@@ -13,6 +13,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        /*FullScreenLoadingDialog.getInstance().setDrawable(R.drawable.loading)
+                .setSpinKitStyle(SpinKitStyle.CUBE_GRID)
+                .setSpinKitColor(R.color.colorAccent)
+                .setBackgroundColor(R.color.colorPrimary);*/
         FullScreenLoadingDialog.getInstance().show(this);
         Timer myTimer = new Timer();
         myTimer.schedule(new TimerTask() {
