@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
+import androidx.annotation.UiThread;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 
@@ -22,6 +23,7 @@ import com.github.ybq.android.spinkit.SpriteFactory;
 
 import java.util.Objects;
 
+@UiThread
 public class FullScreenLoadingDialog {
     private static FullScreenLoadingDialog instance;
 
@@ -87,15 +89,14 @@ public class FullScreenLoadingDialog {
                         .into(imageView);
 
                 spinKitView.setVisibility(View.GONE);
-            }
-            else {
+            } else {
                 spinKitView.setColor(ContextCompat.getColor(context, spinKitColor));
                 spinKitView.setIndeterminateDrawable(SpriteFactory.create(spinKitStyle.convertToLibStyle()));
             }
 
             dialog = builder.create();
             Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(
-                    new ColorDrawable(ContextCompat.getColor(context,backgroundColor)));
+                    new ColorDrawable(ContextCompat.getColor(context, backgroundColor)));
             Objects.requireNonNull(dialog.getWindow()).setGravity(Gravity.CENTER);
             dialog.show();
         }
