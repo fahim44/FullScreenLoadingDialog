@@ -94,12 +94,27 @@ public class FullScreenLoadingDialog {
                 spinKitView.setIndeterminateDrawable(SpriteFactory.create(spinKitStyle.convertToLibStyle()));
             }
 
-            dialog = builder.create();
-            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(
-                    new ColorDrawable(ContextCompat.getColor(context, backgroundColor)));
-            Objects.requireNonNull(dialog.getWindow()).setGravity(Gravity.CENTER);
-            dialog.show();
+            if (dialog != null) {
+                new Handler().postDelayed(() -> {
+                    try {
+                        dialog.dismiss();
+                        showLoader(context, builder);
+                    } catch (Exception ignored) {
+                    }
+                }, 50);
+            }else {
+                showLoader(context, builder);
+            }
+
         }
+    }
+
+    private void showLoader(Context context, AlertDialog.Builder builder) {
+        dialog = builder.create();
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(
+                new ColorDrawable(ContextCompat.getColor(context, backgroundColor)));
+        Objects.requireNonNull(dialog.getWindow()).setGravity(Gravity.CENTER);
+        dialog.show();
     }
 
     public void dismiss() {
