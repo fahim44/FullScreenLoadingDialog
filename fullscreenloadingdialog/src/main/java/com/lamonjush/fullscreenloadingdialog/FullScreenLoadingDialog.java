@@ -102,7 +102,7 @@ public class FullScreenLoadingDialog {
                     } catch (Exception ignored) {
                     }
                 }, 50);
-            }else {
+            } else {
                 showLoader(context, builder);
             }
 
@@ -117,11 +117,18 @@ public class FullScreenLoadingDialog {
         dialog.show();
     }
 
+    public boolean isShowing() {
+        if (dialog != null)
+            return dialog.isShowing();
+        return false;
+    }
+
     public void dismiss() {
         if (dialog != null) {
             new Handler().postDelayed(() -> {
                 try {
-                    dialog.dismiss();
+                    if (dialog != null)
+                        dialog.dismiss();
                     dialog = null;
                 } catch (Exception ignored) {
                 }
