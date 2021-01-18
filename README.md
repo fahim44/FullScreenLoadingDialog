@@ -18,7 +18,7 @@ FullScreenLoadingDialog required **minSdkVersion 21** and **androidx**
 
 
 Add it in your project level build.gradle at the end of repositories:
-```
+```gradle
 allprojects {
   repositories {
     ...
@@ -28,7 +28,7 @@ allprojects {
 ```
 
 Add the dependency in your app.gradle file:
-```
+```gradle
 dependencies {
   implementation "com.github.fahim44:FullScreenLoadingDialog:{latest_version}"
 }
